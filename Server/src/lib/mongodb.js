@@ -1,8 +1,14 @@
 
 import mongoose from 'mongoose';
 import { keys } from '../config/env.js';
+import dns from "dns"
+
+if(keys.server.environment === "development") dns.setServers(["8.8.8.8"])
 
 mongoose.set('strictQuery', true);
+// No index building at import - Lambda cold starts must stay fast.
+// Create indexes once out-of-band (e.g. Atlas) or via syncIndexes() in a migration.
+mongoose.set('autoIndex', false);
 mongoose.set('sanitizeFilter', true);
 
 // Reuse connection across warm serverless invocations
@@ -24,7 +30,8 @@ export async function connectToDB() {
   // Connection attempt already in progress
   if (!cached.promise) {
     cached.promise = mongoose.connect(keys.db.uri, {
-      maxPoolSize: 10,
+      // Lambda opens one pool per concurrent invocation - keep it small.
+      maxPoolSize: 5,
       minPoolSize: 0,
       serverSelectionTimeoutMS: 5000,
       socketTimeoutMS: 45000,

@@ -1,0 +1,284 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/*  Noob Engineer theme (Tailwind v4 tokens)                           */
+/*                                                                     */
+/*  The brand/surface tokens from the design brief live in @theme so   */
+/*  they are available as Tailwind utilities: bg-brand, bg-surface,    */
+/*  text-muted, border-border, shadow-card, rounded-card...            */
+/* ------------------------------------------------------------------ */
+
+@theme {
+  --color-brand: #EA5B2A;
+  --color-brand-hover: #D94D20;
+  --color-brand-active: #BD401A;
+  --color-brand-soft: #FFF0E9;
+  --color-on-brand: #FFFFFF;
+
+  --color-bg: #F7F7F5;
+  --color-bg-secondary: #F0F0ED;
+  --color-bg-tertiary: #EAEAE7;
+
+  --color-surface: #FFFFFF;
+  --color-surface-secondary: #F7F7F5;
+  --color-surface-tertiary: #EEEEEB;
+  --color-surface-hover: #F1F1EE;
+
+  --color-text: #2F2F2F;
+  --color-text-secondary: #666666;
+  --color-text-tertiary: #929292;
+  --color-text-disabled: #BDBDBD;
+
+  --color-border: #E5E5E2;
+  --color-border-secondary: #EEEEEB;
+  --color-border-focus: #EA5B2A;
+
+  --color-success: #25865B;
+  --color-warning: #A86B12;
+  --color-error: #D94343;
+  --color-info: #327BC0;
+
+  --font-sans: "Plus Jakarta Sans", ui-sans-system, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* Display face for large headlines only; body copy stays Plus Jakarta Sans. */
+  --font-heading: "Space Grotesk", "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+
+  /* Reference card pattern (light + dark):
+     - solid surface, no border, no inset edge highlight
+     - soft outer shadow only */
+  --shadow-card: 0 1px 2px 0 rgb(0 0 0 / 0.04),
+    0 12px 24px -12px rgb(0 0 0 / 0.10),
+    0 24px 48px -24px rgb(0 0 0 / 0.08);
+
+  --shadow-card-hover: 0 2px 4px 0 rgb(0 0 0 / 0.05),
+    0 16px 32px -12px rgb(0 0 0 / 0.16),
+    0 32px 64px -24px rgb(0 0 0 / 0.14);
+
+  --shadow-button: inset 0 1px 0 0 rgb(255 255 255 / 0.25),
+    0 1px 2px rgb(0 0 0 / 0.05),
+    0 8px 20px -6px rgb(234 91 42 / 0.40);
+
+  --shadow-field: inset 0 1px 0 0 rgb(0 0 0 / 0.02);
+
+  --shadow-dropdown: 0 2px 6px 0 rgb(0 0 0 / 0.04),
+    0 16px 40px -12px rgb(0 0 0 / 0.18);
+
+  --radius-button: 0.625rem;
+  --radius-card: 1.5rem;
+  --radius-field: 0.625rem;
+
+  --breakpoint-xs: 30rem;
+}
+
+/* Dark mode values. Light stays the default (see data-theme on <html>). */
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --color-bg: #141414;
+  --color-bg-secondary: #1B1B1B;
+  --color-bg-tertiary: #202020;
+
+  --color-surface: #242424;
+  --color-surface-secondary: #2C2C2C;
+  --color-surface-tertiary: #353535;
+  --color-surface-hover: #303030;
+
+  --color-text: #F5F5F5;
+  --color-text-secondary: #A3A3A3;
+  --color-text-tertiary: #737373;
+  --color-text-disabled: #555555;
+
+  --color-border: #2E2E2E;
+  --color-border-secondary: #282828;
+  --color-border-focus: #FF6B3D;
+
+  --color-brand: #FF6B3D;
+  --color-brand-hover: #FF8059;
+  --color-brand-active: #E9572B;
+  --color-brand-soft: #48271E;
+  --color-on-brand: #242424;
+
+  --color-success: #4CAF83;
+  --color-warning: #E9AD50;
+  --color-error: #EF6868;
+  --color-info: #6BA9E8;
+
+  --shadow-card: 0 1px 2px 0 rgb(0 0 0 / 0.35),
+    0 12px 24px -12px rgb(0 0 0 / 0.5),
+    0 24px 48px -24px rgb(0 0 0 / 0.45);
+
+  --shadow-card-hover: 0 2px 4px 0 rgb(0 0 0 / 0.4),
+    0 16px 32px -12px rgb(0 0 0 / 0.6),
+    0 32px 64px -24px rgb(0 0 0 / 0.55);
+
+  --shadow-button: inset 0 1px 0 0 rgb(255 255 255 / 0.2),
+    0 8px 20px -6px rgb(255 107 61 / 0.35);
+
+  --shadow-field: inset 0 1px 0 0 rgb(0 0 0 / 0.1);
+
+  --shadow-dropdown: 0 2px 6px 0 rgb(0 0 0 / 0.4),
+    0 20px 48px -16px rgb(0 0 0 / 0.6);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+button, a, [role="button"], select, input[type="button"], input[type="submit"], input[type="checkbox"], input[type="radio"] {
+  cursor: pointer;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  letter-spacing: -0.011em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3 {
+  letter-spacing: -0.02em;
+}
+
+::selection {
+  background-color: color-mix(in srgb, var(--color-brand) 25%, transparent);
+}
+
+/* Scroll reveal: elements start faded + lowered, then rise in. */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 700ms ease,
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Shared smooth hover treatment for home cards. */
+.card-hover {
+  transition:
+    transform 600ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 600ms ease;
+  will-change: transform, box-shadow;
+}
+
+.card-hover:hover,
+.card-hover:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Gentle float for the hero's decorative cards. */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+@keyframes float-slower {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+.animate-float-slower {
+  animation: float-slower 8s ease-in-out infinite;
+}
+
+@keyframes background-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(28px, -20px, 0) scale(1.06); }
+}
+
+.animate-background-drift {
+  animation: background-drift 14s ease-in-out infinite;
+}
+
+.animate-background-drift-slow {
+  animation: background-drift 20s ease-in-out infinite reverse;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-slow, .animate-float-slower,
+  .animate-background-drift, .animate-background-drift-slow {
+    animation: none;
+  }
+}
+
+.logo {
+  display: block;
+}
+
+/* Inset form fields should not get the convex treatment. */
+input, textarea, select {
+  box-shadow: var(--shadow-field);
+}
+
+/* Code block syntax colours, mapped to the theme tokens. */
+.hljs {
+  color: var(--color-text-secondary);
+  background: transparent;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: var(--color-text-tertiary);
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-section,
+.hljs-link {
+  color: var(--color-brand);
+}
+
+.hljs-string,
+.hljs-title,
+.hljs-name,
+.hljs-attribute,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+  color: var(--color-success);
+}
+
+.hljs-number,
+.hljs-meta,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-params,
+.hljs-title.function_ {
+  color: var(--color-info);
+}
+
+.hljs-variable,
+.hljs-template-variable,
+.hljs-type,
+.hljs-class .hljs-title {
+  color: var(--color-warning);
+}
+
+.hljs-deletion {
+  color: var(--color-error);
+}

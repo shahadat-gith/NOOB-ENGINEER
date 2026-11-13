@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40" role="img" aria-label="Noob Engineer">
+  <defs>
+    <linearGradient id="ne-mark" x1="6" y1="2" x2="34" y2="38" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF8B5E" />
+      <stop offset="0.5" stop-color="#EA5B2A" />
+      <stop offset="1" stop-color="#C94217" />
+    </linearGradient>
+  </defs>
+  <rect width="40" height="40" rx="11" fill="url(#ne-mark)" />
+  <path
+    d="M12.4 12.6 20.9 20l-8.5 7.4"
+    fill="none"
+    stroke="#FFFFFF"
+    stroke-width="4"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <rect x="23.9" y="25.9" width="6.2" height="3.4" rx="1.7" fill="#FFFFFF" />
+</svg>
